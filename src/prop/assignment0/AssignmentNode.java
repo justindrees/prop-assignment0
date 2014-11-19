@@ -2,7 +2,7 @@ package prop.assignment0;
 
 public class AssignmentNode implements INode {
 
-	//assign = id , ‘=’ , expr , ‘;’
+	//assign = id , '=' , expr , ';'
 	
 	private Object ID;
 	private Token token;

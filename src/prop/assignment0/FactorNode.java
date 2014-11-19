@@ -2,7 +2,7 @@ package prop.assignment0;
 
 public class FactorNode implements INode {
 
-	//factor = int | ‘(’ , expr , ‘)’
+	//factor = int | '(' , expr , ')'
 	
 	FactorNode(TermNode term, FactorNode fnode, char sign){
 		this.term = term;
