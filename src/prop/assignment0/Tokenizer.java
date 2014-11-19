@@ -80,7 +80,7 @@ public class Tokenizer implements ITokenizer {
 			
 		}
 		
-		// Code to read in lexeme if it's type ASSING_OP
+		// Code to read in lexeme if it's type ASSIGN_OP
 		if (firstChar == '=') {
 			
 		}
