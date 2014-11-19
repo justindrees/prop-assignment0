@@ -48,7 +48,6 @@ public class Tokenizer implements ITokenizer {
 		}
 		// Code to read in lexeme if it is type IDENT 
 		if (Character.isLetter(scanner.current()) || scanner.current() == '$' || scanner.current() == '_') {
-			System.out.println("#1 Tokenizer");
 			//Subsequent characters may be letters, digits, dollar signs, or underscore characters
 			boolean continueLoop = true;
 			while (continueLoop == true) {
@@ -71,12 +70,8 @@ public class Tokenizer implements ITokenizer {
 				}
 			}
 		}else if (Character.isDigit(scanner.current())) {	// Code to read in lexeme if it's type INT_LIT
-			System.out.println("#2 Tokenizer");
 			boolean continueLoop = true;
 			while (continueLoop) {
-				//System.out.println("#3 Tokenizer");
-				System.out.println("scanner.current(): "+scanner.current());
-				System.out.println("lexemeToCreate: "+lexemeToCreate);
 				// Use scanner.moveNext() to read in subsequence characters of the lexeme
 				// Concatenate those characters:  lexemeToCreate += nextCharacter;
 				// Find character that is not a digit
@@ -105,7 +100,6 @@ public class Tokenizer implements ITokenizer {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.DIV_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '=') {
-			System.out.println("#3 Tokenizer");
 			currentLexeme = new Lexeme(lexemeToCreate,Token.ASSIGN_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '(') {
