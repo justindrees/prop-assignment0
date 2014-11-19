@@ -1,6 +1,7 @@
 package prop.assignment0;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Tokenizer implements ITokenizer {
 	/**
@@ -9,6 +10,8 @@ public class Tokenizer implements ITokenizer {
 	 * implements the interface ITokenizer.
 	 */
 	private Scanner scanner;
+	private Lexeme currentLexeme;
+	ArrayList<Lexeme> tokens = new ArrayList<Lexeme>();
 	
 	public Tokenizer() {
 	}
@@ -30,6 +33,12 @@ public class Tokenizer implements ITokenizer {
 	// Returns the current token in the stream.
 	@Override
 	public Lexeme current() {
+		return currentLexeme;
+	}
+
+	// Moves current to the next token in the stream.
+	@Override
+	public void moveNext() throws IOException, TokenizerException {
 		// Figure out if char is assign, expr, term, or factor
 		// Create Lexeme(Object value, Token token)
 
@@ -46,6 +55,7 @@ public class Tokenizer implements ITokenizer {
 				// Concatenate those characters:  lexemeToCreate += nextCharacter;
 				// Find character that is not letters, digits, dollar signs, or underscore characters
 				// Then you know the lexeme ends before this character
+				// Add the whole lexeme to the arraylist tokens
 			}
 		}
 
@@ -57,6 +67,7 @@ public class Tokenizer implements ITokenizer {
 				// Concatenate those characters:  lexemeToCreate += nextCharacter;
 				// Find character that is not a digit
 				// Then you know the lexeme ends before this character
+				// Add the whole lexeme to the arraylist tokens
 			}
 		}
 
@@ -88,13 +99,7 @@ public class Tokenizer implements ITokenizer {
 		if (firstChar == EOF) {
 		
 		}*/
-		return null;
-	}
-
-	// Moves current to the next token in the stream.
-	@Override
-	public void moveNext() throws IOException, TokenizerException {
-		// TODO
+		
 		// If scanner.MoveNext() == EOF { this.close() }
 	}
 
