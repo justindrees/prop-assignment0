@@ -3,11 +3,13 @@ package prop.assignment0;
 public class AssignmentNode implements INode {
 
 	private Lexeme lexeme;
-	private Object value;
+	private Object ID;
 	private Token token;
+	private ExpressionNode expr;
 	
-	AssignmentNode(Object value){
-		this.value = value;
+	AssignmentNode(String ID, ExpressionNode expr){
+		this.ID = ID;
+		this.expr = expr;
 	}
 	
 	@Override

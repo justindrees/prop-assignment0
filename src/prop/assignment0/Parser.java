@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Parser implements IParser {
 	
 	Tokenizer tn = new Tokenizer();
-	ArrayList<Lexeme> parseTree = new ArrayList<Lexeme>();
+	ArrayList<INode> parseTree = new ArrayList<INode>();
 	
 	
 	public Parser() {	
@@ -24,18 +24,19 @@ public class Parser implements IParser {
 		INode n = assign();
 		return n;
 	}
-	private AssignmentNode assign() throws IOException, TokenizerException{
+	private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
 		// assign = id , = , expr ,;
+		String id = "";
 		if(tn.current().token() == Token.IDENT){
-			parseTree.add(tn.current());
+			id = (String) tn.current().value();
 			tn.moveNext();
 			if(tn.current().token() == Token.ASSIGN_OP){
-				parseTree.add(tn.current());
 				tn.moveNext();
-				INode n = expr();
-				//parseTree.add(/*lexeme?*/)
+				ExpressionNode n = expr();
 				if(tn.current().token() == Token.SEMICOLON){
-					return n;
+					AssignmentNode n2 = new AssignmentNode(id,n);		// TABS for correct buildString??
+					parseTree.add(n);
+					return n2;
 				}
 			}
 		}
@@ -44,32 +45,37 @@ public class Parser implements IParser {
 	private ExpressionNode expr() throws IOException, TokenizerException{
 		// expr = term, + || -, expr
 		tn.moveNext();
+		char sign = ' ';
 		INode n = term();
 		if(tn.current().token() == Token.ADD_OP){
-			parseTree.add(tn.current());
 			tn.moveNext();
+			sign = '+';
 		}
 		if(tn.current().token() == Token.SUB_OP){
-			parseTree.add(tn.current());
+			sign = '-';
 			tn.moveNext();
 		}
+		ExpressionNode n2 = new ExpressionNode(n, ExpressionNode expr,sign);
 		INode n2 = expr();
 		return n2;
 		throw new ParserException("Syntax error. ParserException in expr() ");
 	}
 	private TermNode term() throws IOException, TokenizerException{
 		// term = factor, * | /, term
+		char sign = ' ';
 		INode n = factor();
 		if(tn.current().token() == Token.MULT_OP){
-			parseTree.add(tn.current());
+			sign = '*';
 			tn.moveNext();
 		}
 		if(tn.current().token() == Token.DIV_OP){
-			parseTree.add(tn.current());
+			sign = '/';
 			tn.moveNext();
 		}
-		return n;
-		throw new ParserException("Syntax error. ParserException in term() ");
+		if(sign == ' ')
+			throw new ParserException("Syntax error. ParserException in term() ");
+		TermNode n2 = new TermNode(TermNode term,n,sign);
+		return n2;
 	}
 	private FactorNode factor() throws IOException, TokenizerException{
 		// factor = int | (, expr ,)
