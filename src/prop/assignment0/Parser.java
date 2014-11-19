@@ -23,19 +23,19 @@ public class Parser implements IParser {
 		return assign();
 	}
 	private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
-
+		//assign = id , ‘=’ , expr , ‘;’
 		return null;
 	}
 	private ExpressionNode expr() throws IOException, TokenizerException{
-
+		//expr = term , [ ( ‘+’ | ‘-’ ) , expr ] ;
 		return null;
 	}
 	private TermNode term() throws IOException, TokenizerException, ParserException{
-
+		//term = factor , [ ( ‘*’ | ‘/’) , term] ;
 		return null;
 	}
 	private FactorNode factor() throws IOException, TokenizerException{
-
+		//factor = int | ‘(’ , expr , ‘)’
 		return null;
 	}
 	// Closes the file and releases any system resources associated with it.

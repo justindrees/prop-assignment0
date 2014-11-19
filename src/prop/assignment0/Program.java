@@ -23,7 +23,7 @@ public class Program {
 				outputFileName = args[1];
 				*/
 				
-				// TODO: check if System.getProperty works
+				// TODO: check if System.getProperty works // seems to work
 				inputFileName = System.getProperty("user.dir") + "/input-output-files/program1.txt";
 				outputFileName = System.getProperty("user.dir") + "/input-output-files/output.txt";
 				parser = new Parser();
