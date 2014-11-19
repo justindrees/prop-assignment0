@@ -21,7 +21,7 @@ public class Parser implements IParser {
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {		// use tn.current() and tn.moveNext()
 		INode n = assign();
-		return n;		
+		return n;
 	}
 	private INode assign(){
 		// assign = id,=,expr,;
