@@ -6,10 +6,10 @@ public class ExpressionNode implements INode {
 
 	private Token token;
 	private TermNode term;
+	private char sign;		// sign for + or -
 	private ExpressionNode expr;
-	private String sign;
 	
-	ExpressionNode(TermNode term, ExpressionNode expr, String sign){
+	ExpressionNode(TermNode term, ExpressionNode expr, char sign){
 		this.term = term;
 		this.expr = expr;
 		this.sign = sign;

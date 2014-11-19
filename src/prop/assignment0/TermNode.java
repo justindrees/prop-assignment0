@@ -6,12 +6,12 @@ public class TermNode implements INode {
 	
 	private Token token;
 	private TermNode term;
-	private FactorNode fnode;
-	private char sign;
+	private FactorNode factor;
+	private char sign;		// sign for * or /
 	
-	TermNode(TermNode term, FactorNode fnode, char sign){
+	TermNode(TermNode term, FactorNode factor, char sign){
 		this.term = term;
-		this.fnode = fnode;
+		this.factor = factor;
 		this.sign = sign;
 		
 		/*char sign = ' ';

@@ -4,9 +4,10 @@ public class AssignmentNode implements INode {
 
 	//assign = id , ‘=’ , expr , ‘;’
 	
-	private Object ID;
 	private Token token;
+	private String ID;
 	private ExpressionNode expr;
+	// no variables for = and ;, will check if they exist below
 	
 	AssignmentNode(String ID, ExpressionNode expr){
 		this.ID = ID;

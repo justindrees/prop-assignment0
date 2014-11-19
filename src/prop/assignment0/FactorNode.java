@@ -3,11 +3,14 @@ package prop.assignment0;
 public class FactorNode implements INode {
 
 	//factor = int | ‘(’ , expr , ‘)’
+	int value;
+	ExpressionNode expr;
+	// no variable for Parentheses, will check if they exist below
 	
-	FactorNode(TermNode term, FactorNode fnode, char sign){
-		this.term = term;
-		this.fnode = fnode;
-		this.sign = sign;
+	
+	FactorNode(int value, ExpressionNode expr){
+		this.value = value;
+		this.expr = expr;
 		
 		/*
 		if(tn.current().token() == Token.INT_LIT){
