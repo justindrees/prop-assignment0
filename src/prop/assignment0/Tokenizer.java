@@ -74,6 +74,9 @@ public class Tokenizer implements ITokenizer {
 			System.out.println("#2 Tokenizer");
 			boolean continueLoop = true;
 			while (continueLoop) {
+				//System.out.println("#3 Tokenizer");
+				System.out.println("scanner.current(): "+scanner.current());
+				System.out.println("lexemeToCreate: "+lexemeToCreate);
 				// Use scanner.moveNext() to read in subsequence characters of the lexeme
 				// Concatenate those characters:  lexemeToCreate += nextCharacter;
 				// Find character that is not a digit
@@ -81,7 +84,7 @@ public class Tokenizer implements ITokenizer {
 				// Add the whole lexeme to the arraylist tokens
 				lexemeToCreate += scanner.current();
 				scanner.moveNext();
-				if(scanner.current() == ' '){
+				if(scanner.current() == ' ' || scanner.current() == ';' || scanner.current() == ')'){
 					continueLoop = false;
 					currentLexeme = new Lexeme(lexemeToCreate,Token.INT_LIT);
 					lexemeToCreate = "";
