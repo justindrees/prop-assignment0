@@ -2,12 +2,34 @@ package prop.assignment0;
 
 public class AssignmentNode implements INode {
 
-	private Lexeme lexeme;
-	private Object value;
-	private Token token;
+	//assign = id , ‘=’ , expr , ‘;’
 	
-	AssignmentNode(Object value){
-		this.value = value;
+	private Object ID;
+	private Token token;
+	private ExpressionNode expr;
+	
+	AssignmentNode(String ID, ExpressionNode expr){
+		this.ID = ID;
+		this.expr = expr;
+		
+		/*
+		String id = "";
+		if(tn.current().token() == Token.IDENT){
+			id = (String) tn.current().value();
+			tn.moveNext();
+			if(tn.current().token() == Token.ASSIGN_OP){
+				tn.moveNext();
+				ExpressionNode n = expr();
+				if(tn.current().token() == Token.SEMICOLON){
+					AssignmentNode n2 = new AssignmentNode(id,n);		// TABS for correct buildString??
+					parseTree.add(n);
+					return n2;
+				}
+			}
+		}
+		throw new ParserException("Syntax error. ParserException in assign() ");
+		*/
+		
 	}
 	
 	@Override
@@ -20,10 +42,6 @@ public class AssignmentNode implements INode {
 	public void buildString(StringBuilder builder, int tabs) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	void setLexeme(Lexeme lexeme){
-		this.lexeme = lexeme;
 	}
 
 }
