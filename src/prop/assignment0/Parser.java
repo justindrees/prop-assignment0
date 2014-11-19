@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class Parser implements IParser {
 	
+	Tokenizer tn = new Tokenizer();
+	
 	public Parser() {
 		
 	}
@@ -18,13 +20,29 @@ public class Parser implements IParser {
 	// Parses a program from file returning a parse tree (the root node of a parse tree).
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {
-		// TODO 
-		return null;
+		INode n = assign();
+		return n;		
 	}
-
+	
+	private INode assign(){
+		// assign = id,=,expr,;
+		return new AssignmentNode(tn);
+	}
+	private INode expr(){
+		// expr = term, + || -, expr
+		return new ExpressionNode();
+	}
+	private INode term(){
+		// term = factor, * | /, term
+		return new TermNode();
+	}
+	private INode factor(){
+		// factor = int | (, expr ,)
+		return new FactorNode();
+	}
 	// Closes the file and releases any system resources associated with it.
 	@Override
 	public void close() throws IOException {
-		// TODO 
+		tn.close();
 	}
 }
