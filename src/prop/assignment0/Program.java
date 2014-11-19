@@ -23,8 +23,9 @@ public class Program {
 				outputFileName = args[1];
 				*/
 				
-				inputFileName = args[0];
-				outputFileName = args[1];
+				// TODO: check if System.getProperty works
+				inputFileName = System.getProperty("user.dir") + "/input-output-files/program1.txt";
+				outputFileName = System.getProperty("user.dir") + "/input-output-files/output.txt";
 				parser = new Parser();
 				parser.open(inputFileName);
 				root = parser.parse();

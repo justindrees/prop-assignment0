@@ -32,28 +32,35 @@ public class Tokenizer implements ITokenizer {
 	public Lexeme current() {
 		// Figure out if char is assign, expr, term, or factor
 		// Create Lexeme(Object value, Token token)
-			// NULL, IDENT, INT_LIT, ADD_OP, SUB_OP, MULT_OP, DIV_OP, ASSIGN_OP, 
-			// LEFT_PAREN, RIGHT_PAREN, SEMICOLON, LEFT_CURLY, RIGHT_CURLY, EOF
+
 		char firstChar = scanner.current();
 		int firstCharType = Character.getType(firstChar);
+		String lexemeToCreate;
+		
+		// Code to read in lexeme if it is type IDENT 
 		if (Character.isLetter(firstChar) || firstChar == '$' || firstChar == '_') {
 			//Subsequent characters may be letters, digits, dollar signs, or underscore characters
 			boolean continueLoop = true;
 			while (continueLoop) {
-				
+				// Use scanner.moveNext() to read in subsequence characters of the lexeme
+				// Concatenate those characters:  lexemeToCreate += nextCharacter;
+				// Find character that is not letters, digits, dollar signs, or underscore characters
+				// Then you know the lexeme ends before this character
 			}
 		}
 
+		// Code to read in lexeme if it's type INT_LIT
 		if (Character.isDigit(firstChar)) {
 			boolean continueLoop = true;
 			while (continueLoop) {
-				
+				// Use scanner.moveNext() to read in subsequence characters of the lexeme
+				// Concatenate those characters:  lexemeToCreate += nextCharacter;
+				// Find character that is not a digit
+				// Then you know the lexeme ends before this character
 			}
 		}
 
-		if (Character.isSpaceChar(firstChar) || Character.isWhitespace(firstChar)) {
-		}
-
+		// Code to read in lexeme if it's type ADD_OP, SUB_OP, MULT_OP, DIV_OP
 		if (firstCharType == Character.MATH_SYMBOL) {
 			
 		}
@@ -61,6 +68,18 @@ public class Tokenizer implements ITokenizer {
 		if (firstCharType == Character.CONNECTOR_PUNCTUATION) {
 			
 		}
+		
+		// Code to read in lexeme if it's type ASSING_OP
+		if (firstChar == '=') {
+			
+		}
+		
+		if (Character.isSpaceChar(firstChar) || Character.isWhitespace(firstChar)) {
+
+		}
+		
+		// TODO: Add if-statements for:
+		//	NULL, LEFT_PAREN, RIGHT_PAREN, SEMICOLON, LEFT_CURLY, RIGHT_CURLY, EOF
 		/*
 		if (firstChar == null) {
 			
