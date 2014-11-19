@@ -33,6 +33,8 @@ public class Scanner implements IScanner {
 			throw new IOException("No open file.");
 		if (current != EOF)
 			current = (char)reader.read();
+		if (current == EOF)
+			close();
 	}
 	
 	public void close() throws IOException {

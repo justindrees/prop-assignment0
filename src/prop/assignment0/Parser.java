@@ -14,15 +14,27 @@ public class Parser implements IParser {
 	// Opens a file for parsing.
 	@Override
 	public void open(String fileName) throws IOException, TokenizerException {
-		Tokenizer tokenizer = new Tokenizer();
-		tokenizer.open(fileName);
+		tn.open(fileName);
 	}
 	// Parses a program from file returning a parse tree (the root node of a parse tree).
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {		// use tn.current() and tn.moveNext()
-		tn.moveNext();
+		boolean endit = true;
+		int times = 0;
+		while(endit == true){
+			times ++;
+			tn.moveNext();
+			System.out.println("Tokenizer run: "+times+" found: "+tn.current().value()+" "+tn.current().token());
+			if(times == 20){
+				endit = false;
+			}
+		}
+		
+		/*tn.moveNext();
 		INode n = assign();
-		return n;
+		return n;*/
+		
+		return new TermNode(null,null,'a');
 	}
 	private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
 		// assign = id , = , expr ,;
@@ -46,7 +58,7 @@ public class Parser implements IParser {
 		// expr = term, + || -, expr
 		tn.moveNext();
 		char sign = ' ';
-		INode n = term();
+		//INode n = term();
 		if(tn.current().token() == Token.ADD_OP){
 			tn.moveNext();
 			sign = '+';
@@ -55,12 +67,13 @@ public class Parser implements IParser {
 			sign = '-';
 			tn.moveNext();
 		}
-		ExpressionNode n2 = new ExpressionNode(n, ExpressionNode expr,sign);
-		INode n2 = expr();
-		return n2;
-		throw new ParserException("Syntax error. ParserException in expr() ");
+		//ExpressionNode n2 = new ExpressionNode(n, ExpressionNode expr,sign);
+		//INode n2 = expr();
+		//return n2;
+		return null;
+		//throw new ParserException("Syntax error. ParserException in expr() ");
 	}
-	private TermNode term() throws IOException, TokenizerException{
+	private TermNode term() throws IOException, TokenizerException, ParserException{
 		// term = factor, * | /, term
 		char sign = ' ';
 		INode n = factor();
@@ -74,12 +87,13 @@ public class Parser implements IParser {
 		}
 		if(sign == ' ')
 			throw new ParserException("Syntax error. ParserException in term() ");
-		TermNode n2 = new TermNode(TermNode term,n,sign);
-		return n2;
+		//TermNode n2 = new TermNode(TermNode term,n,sign);
+		//return n2;
+		return null;
 	}
 	private FactorNode factor() throws IOException, TokenizerException{
 		// factor = int | (, expr ,)
-		if(tn.current().token() == Token.INT_LIT){
+		/*if(tn.current().token() == Token.INT_LIT){
 			parseTree.add(tn.current());
 			tn.moveNext();
 		}else if(tn.current().token() == Token.LEFT_PAREN){
@@ -90,11 +104,11 @@ public class Parser implements IParser {
 				parseTree.add(tn.current());
 				tn.moveNext();
 			}
-			
-		}
+			*/
+
 		
 		return new FactorNode();
-		throw new ParserException("Syntax error. ParserException in factor() ");
+		//throw new ParserException("Syntax error. ParserException in factor() ");
 	}
 	// Closes the file and releases any system resources associated with it.
 	@Override

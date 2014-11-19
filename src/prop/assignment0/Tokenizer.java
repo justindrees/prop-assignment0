@@ -41,34 +41,37 @@ public class Tokenizer implements ITokenizer {
 	public void moveNext() throws IOException, TokenizerException {
 		// Figure out if char is assign, expr, term, or factor
 		// Create Lexeme(Object value, Token token)
-
-		char firstChar = scanner.current();
-		int firstCharType = Character.getType(firstChar);
-		String lexemeToCreate = null;
-		
-		if(firstChar == ' '){		// remove whitespaces
+		//int scanner.current()Type = Character.getType(scanner.current());
+		String lexemeToCreate = "";
+		if(scanner.current() == ' '){		// remove whitespaces
 			scanner.moveNext();
 		}
-		
 		// Code to read in lexeme if it is type IDENT 
-		if (Character.isLetter(firstChar) || firstChar == '$' || firstChar == '_') {
+		if (Character.isLetter(scanner.current()) || scanner.current() == '$' || scanner.current() == '_') {
+			System.out.println("#1 Tokenizer");
 			//Subsequent characters may be letters, digits, dollar signs, or underscore characters
 			boolean continueLoop = true;
-			while (continueLoop) {
+			while (continueLoop == true) {
 				// Use scanner.moveNext() to read in subsequence characters of the lexeme
 				// Concatenate those characters:  lexemeToCreate += nextCharacter;
 				// Find character that is not letters, digits, dollar signs, or underscore characters
 				// Then you know the lexeme ends before this character
 				// Add the whole lexeme to the arraylist tokens
-				lexemeToCreate += firstChar;
+				try {
+					  Thread.sleep(1000);
+					} catch (InterruptedException ie) {
+					    //Handle exception
+					}
+				lexemeToCreate += scanner.current();
 				scanner.moveNext();
-				if(firstChar == ' '){
+				if(scanner.current() == ' '){
 					continueLoop = false;
 					currentLexeme = new Lexeme(lexemeToCreate,Token.IDENT);
 					lexemeToCreate = "";
 				}
 			}
-		}else if (Character.isDigit(firstChar)) {	// Code to read in lexeme if it's type INT_LIT
+		}else if (Character.isDigit(scanner.current())) {	// Code to read in lexeme if it's type INT_LIT
+			System.out.println("#2 Tokenizer");
 			boolean continueLoop = true;
 			while (continueLoop) {
 				// Use scanner.moveNext() to read in subsequence characters of the lexeme
@@ -76,46 +79,57 @@ public class Tokenizer implements ITokenizer {
 				// Find character that is not a digit
 				// Then you know the lexeme ends before this character
 				// Add the whole lexeme to the arraylist tokens
-				lexemeToCreate += firstChar;
+				lexemeToCreate += scanner.current();
 				scanner.moveNext();
-				if(firstChar == ' '){
+				if(scanner.current() == ' '){
 					continueLoop = false;
 					currentLexeme = new Lexeme(lexemeToCreate,Token.INT_LIT);
 					lexemeToCreate = "";
 				}
 			}
-		}/*else if (firstChar == null) {		// How do you handle null?
+		}/*else if (scanner.current() == null) {		// How do you handle null?
 			currentLexeme = new Lexeme(lexemeToCreate,Token.NULL);
-		}*/else if (firstChar == '+') {
+		}*/else if (scanner.current() == '+') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.ADD_OP);
-		}else if (firstChar == '-') {
+			scanner.moveNext();
+		}else if (scanner.current() == '-') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.SUB_OP);
-		}else if (firstChar == '*') {
+			scanner.moveNext();
+		}else if (scanner.current() == '*') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.MULT_OP);
-		}else if (firstChar == '/') {
+			scanner.moveNext();
+		}else if (scanner.current() == '/') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.DIV_OP);
-		}else if (firstChar == '=') {
+			scanner.moveNext();
+		}else if (scanner.current() == '=') {
+			System.out.println("#3 Tokenizer");
 			currentLexeme = new Lexeme(lexemeToCreate,Token.ASSIGN_OP);
-		}else if (firstChar == '(') {
+			scanner.moveNext();
+		}else if (scanner.current() == '(') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.LEFT_PAREN);
-		}else if (firstChar == ')') {
+			scanner.moveNext();
+		}else if (scanner.current() == ')') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.RIGHT_PAREN);
-		}else if (firstChar == ';') {
+			scanner.moveNext();
+		}else if (scanner.current() == ';') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.SEMICOLON);
-		}else if (firstChar == '{') {
+			scanner.moveNext();
+		}else if (scanner.current() == '{') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.LEFT_CURLY);
-		}else if (firstChar == '}') {
+			scanner.moveNext();
+		}else if (scanner.current() == '}') {
 			currentLexeme = new Lexeme(lexemeToCreate,Token.RIGHT_CURLY);
-		}/*else if (firstChar == Token.EOF) {			// how can EOF be defined?
+			scanner.moveNext();
+		}/*else if (scanner.current() == Token.EOF) {			// how can EOF be defined?
 			currentLexeme = new Lexeme(lexemeToCreate,Token.EOF);
 		}*/
 		
 		// If scanner.MoveNext() == EOF { this.close() }
 		
-		/*else if (firstCharType == Character.MATH_SYMBOL) { // Code to read in lexeme if it's type ADD_OP, SUB_OP, MULT_OP, DIV_OP
-		}else if (firstCharType == Character.CONNECTOR_PUNCTUATION) {
-		}else if (firstChar == '=') { // Code to read in lexeme if it's type ASSING_OP
-		}else if (Character.isSpaceChar(firstChar) || Character.isWhitespace(firstChar)) {
+		/*else if (scanner.current()Type == Character.MATH_SYMBOL) { // Code to read in lexeme if it's type ADD_OP, SUB_OP, MULT_OP, DIV_OP
+		}else if (scanner.current()Type == Character.CONNECTOR_PUNCTUATION) {
+		}else if (scanner.current() == '=') { // Code to read in lexeme if it's type ASSING_OP
+		}else if (Character.isSpaceChar(scanner.current()) || Character.isWhitespace(scanner.current())) {
 
 		}*/
 	}

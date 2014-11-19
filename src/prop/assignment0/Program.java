@@ -48,7 +48,7 @@ public class Program {
 				System.out.println("6# Program");
 			}
 			catch (Exception exception) {
-				System.out.println("EXCEPTION: " + exception);
+				System.out.println("1EXCEPTION: " + exception);
 			}
 			finally {
 				System.out.println("7# Program");
