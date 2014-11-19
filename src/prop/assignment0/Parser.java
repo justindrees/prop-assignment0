@@ -18,23 +18,10 @@ public class Parser implements IParser {
 	}
 	// Parses a program from file returning a parse tree (the root node of a parse tree).
 	@Override
-	public INode parse() throws IOException, TokenizerException, ParserException {		// use tn.current() and tn.moveNext()
-		boolean endit = true;
-		int times = 0;
-		while(endit == true){
-			times ++;
-			tn.moveNext();
-			System.out.println("Tokenizer run: "+times+" found: "+tn.current().value()+" "+tn.current().token());
-			if(times == 20){
-				endit = false;
-			}
-		}
-		
-		/*tn.moveNext();
+	public INode parse() throws IOException, TokenizerException, ParserException {		// use tn.current() and tn.moveNext()	
+		tn.moveNext();
 		INode n = assign();
-		return n;*/
-		
-		return new TermNode(null,null,'a');
+		return n;
 	}
 	private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
 		// assign = id , = , expr ,;
