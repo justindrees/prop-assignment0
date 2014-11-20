@@ -12,7 +12,7 @@ public class ExpressionNode implements INode {
 	private ExpressionNode expr = null;
 	
 	ExpressionNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		
+		System.out.println("ExpressionNode constructor called");
 		term = new TermNode(tn);
 		tn.moveNext();
 		if(tn.current().token() == Token.ADD_OP){

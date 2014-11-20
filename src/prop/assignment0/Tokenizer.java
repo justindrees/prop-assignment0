@@ -84,34 +84,34 @@ public class Tokenizer implements ITokenizer {
 		}/*else if (scanner.current() == null) {		// How do you handle null?
 			currentLexeme = new Lexeme(lexemeToCreate,Token.NULL);
 		}*/else if (scanner.current() == '+') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.ADD_OP);
+			currentLexeme = new Lexeme('+',Token.ADD_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '-') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.SUB_OP);
+			currentLexeme = new Lexeme('-',Token.SUB_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '*') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.MULT_OP);
+			currentLexeme = new Lexeme('*',Token.MULT_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '/') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.DIV_OP);
+			currentLexeme = new Lexeme('/',Token.DIV_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '=') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.ASSIGN_OP);
+			currentLexeme = new Lexeme('=',Token.ASSIGN_OP);
 			scanner.moveNext();
 		}else if (scanner.current() == '(') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.LEFT_PAREN);
+			currentLexeme = new Lexeme('(',Token.LEFT_PAREN);
 			scanner.moveNext();
 		}else if (scanner.current() == ')') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.RIGHT_PAREN);
+			currentLexeme = new Lexeme(')',Token.RIGHT_PAREN);
 			scanner.moveNext();
 		}else if (scanner.current() == ';') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.SEMICOLON);
+			currentLexeme = new Lexeme(';',Token.SEMICOLON);
 			scanner.moveNext();
 		}else if (scanner.current() == '{') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.LEFT_CURLY);
+			currentLexeme = new Lexeme('{',Token.LEFT_CURLY);
 			scanner.moveNext();
 		}else if (scanner.current() == '}') {
-			currentLexeme = new Lexeme(lexemeToCreate,Token.RIGHT_CURLY);
+			currentLexeme = new Lexeme('}',Token.RIGHT_CURLY);
 			scanner.moveNext();
 		}/*else if (scanner.current() == Token.EOF) {			// how can EOF be defined?
 			currentLexeme = new Lexeme(lexemeToCreate,Token.EOF);

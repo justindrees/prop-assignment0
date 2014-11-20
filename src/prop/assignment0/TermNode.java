@@ -12,8 +12,8 @@ public class TermNode implements INode {
 	private char sign = ' ';		// sign for * or /
 	
 	TermNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
+		System.out.println("TermNode constructor called");
 		
-
 		factor = new FactorNode(tn);
 		if(tn.current().token() == Token.MULT_OP){
 			sign = '*';

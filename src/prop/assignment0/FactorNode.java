@@ -11,7 +11,7 @@ public class FactorNode implements INode {
 	
 	
 	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		
+		System.out.println("FactorNode constructor called");
 		if(tn.current().token() == Token.INT_LIT){
 			value = (int) tn.current().value();
 			tn.moveNext();
