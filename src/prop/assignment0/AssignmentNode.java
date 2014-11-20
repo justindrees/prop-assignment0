@@ -12,15 +12,12 @@ public class AssignmentNode implements INode {
 	// no variables for = and ;, will check if they exist below
 	
 	AssignmentNode(Tokenizer tn) throws IOException, TokenizerException, ParserException{
-		System.out.println("-------------NEW INSTANCE OF ASSIGNMENTNODE-----------------");
-		System.out.println("AssignmentNode constructor called, current is: "+tn.current());
 		if(tn.current().token() == Token.IDENT){
 			id = (String) tn.current().value();
 			tn.moveNext();
 			if(tn.current().token() == Token.ASSIGN_OP){
 				tn.moveNext();
 				expr = new ExpressionNode(tn);
-				System.out.println("BACK TO ASSIGNMENTNODE FROM EXPR");
 				if(tn.current().token() == Token.SEMICOLON){
 					semicolon = true;
 				}

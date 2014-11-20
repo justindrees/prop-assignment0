@@ -12,18 +12,13 @@ public class TermNode implements INode {
 	private char sign = ' ';		// sign for * or /
 	
 	TermNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		System.out.println("-------------NEW INSTANCE OF TERMNODE-----------------");
-		System.out.println("TermNode constructor called, current is: "+tn.current());
 		factor = new FactorNode(tn);
-		System.out.println("BACK TO TERMNODE FROM FACTORNODE");
 		
 		if(tn.current().token() == Token.MULT_OP){
 			sign = '*';
-			System.out.println("sign in TermNode = * and moveNext creates following:");
 			token = Token.MULT_OP;
 			tn.moveNext();
 		}else if(tn.current().token() == Token.DIV_OP){
-			System.out.println("sign in TermNode = / and moveNext creates following:");
 			sign = '/';
 			token = Token.DIV_OP;
 			tn.moveNext();
@@ -45,7 +40,7 @@ public class TermNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		String std_tab = "";
-		for(int i = tabs;i==0;tabs--){
+		for(int i = 0;i<tabs;i++){
 			std_tab += "\t";
 		}
 		builder.append("\n"+std_tab+"TermNode");

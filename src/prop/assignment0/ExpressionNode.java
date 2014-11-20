@@ -12,21 +12,16 @@ public class ExpressionNode implements INode {
 	private ExpressionNode expr = null;
 	
 	ExpressionNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		System.out.println("-------------NEW INSTANCE OF EXPRESSIONNODE-----------------");
-		System.out.println("ExpressionNode constructor called, current is: "+tn.current());
 
 		term = new TermNode(tn);
-		System.out.println("BACK TO EXPR FROM TERMNODE");
 		
 		if(tn.current().token() == Token.ADD_OP){
 			sign = '+';
 			token = Token.ADD_OP;
-			System.out.println("Token = ADD_OP and moveNext creates following:");
 			tn.moveNext();
 		}else if(tn.current().token() == Token.SUB_OP){
 			sign = '-';
 			token = Token.SUB_OP;
-			System.out.println("Token = SUB_OP and moveNext creates following:");
 			tn.moveNext();
 		}
 		if(tn.current().token() != Token.RIGHT_PAREN && tn.current().token() != Token.SEMICOLON){
@@ -47,13 +42,14 @@ public class ExpressionNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		String std_tab = "";
-		for(int i = tabs;i==0;tabs--){
+		for(int i = 0;i<tabs;i++){
 			std_tab += "\t";
 		}
 		builder.append("\n"+std_tab+"ExpressionNode");
 		if(term != null)
 			term.buildString(builder,tabs+1);
-		builder.append("\n"+std_tab+"\t"+token+" "+sign);
+		if (sign != ' ')
+			builder.append("\n"+std_tab+"\t"+token+" "+sign);
 		if(expr != null)
 			expr.buildString(builder,tabs+1);
 

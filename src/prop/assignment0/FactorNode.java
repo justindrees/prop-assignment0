@@ -8,25 +8,19 @@ public class FactorNode implements INode {
 	int value = 0;
 	ExpressionNode expr = null;
 	Token token;
-	boolean leftParen = false;
-	boolean rightParen = false;
+	boolean paren = false;
 	
 	
 	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		System.out.println("-------------NEW INSTANCE OF FACTORNODE-----------------");
-		System.out.println("FactorNode constructor called, current is: "+tn.current());
 		if (tn.current().token() == Token.INT_LIT){
 			value = Integer.parseInt((String)tn.current().value());
-			System.out.println("value set to "+value+" and moveNext creates following:");
-			token = Token.INT_LIT;
 			tn.moveNext();
 		}else if(tn.current().token() == Token.LEFT_PAREN){
-			leftParen = true;
 			token = Token.LEFT_PAREN;
 			tn.moveNext();
 			expr = new ExpressionNode(tn);
 			if(tn.current().token() == Token.RIGHT_PAREN){
-				rightParen = true;
+				paren = true;
 				token = Token.RIGHT_PAREN;
 				tn.moveNext();
 			}
@@ -45,16 +39,16 @@ public class FactorNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		String std_tab = "";
-		for(int i = tabs;i==0;tabs--){
+		for(int i = 0;i<tabs;i++){
 			std_tab += "\t";
 		}
 		builder.append("\n"+std_tab+"FactorNode");
-		if(expr != null){
+		if(expr != null && paren == true){
+			builder.append("\n"+std_tab+"\t"+Token.LEFT_PAREN+" "+"(");
 			expr.buildString(builder,tabs+1);
+			builder.append("\n"+std_tab+"\t"+Token.RIGHT_PAREN+" "+")");
 		}else if(value != 0){
-			builder.append("\n"+std_tab+"\t"+token+" "+value);
-		}else if(leftParen == true){
-			builder.append("\n"+std_tab+"\t"+token+" "+"(");
+			builder.append("\n"+std_tab+"\t"+Token.INT_LIT+" "+value);
 		}
 	}
 
