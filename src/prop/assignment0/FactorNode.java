@@ -1,5 +1,7 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class FactorNode implements INode {
 
 	//factor = int | ‘(’ , expr , ‘)’
@@ -8,26 +10,19 @@ public class FactorNode implements INode {
 	// no variable for parentheses, will check if they exist below
 	
 	
-	FactorNode(Tokenizer tn) throws ParserException{
+	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
 		
-		/*
 		if(tn.current().token() == Token.INT_LIT){
-			parseTree.add(tn.current());
 			tn.moveNext();
 		}else if(tn.current().token() == Token.LEFT_PAREN){
-			parseTree.add(tn.current());
 			tn.moveNext();
-			INode n = expr();
 			if(tn.current().token() == Token.RIGHT_PAREN){
-				parseTree.add(tn.current());
 				tn.moveNext();
 			}
-		return new FactorNode();
-		//throw new ParserException("Syntax error. ParserException in factor() ");*/
-
+		}
 		
-		if(expr == null || value == 0)
-			throw new ParserException("Syntax error. ParserException in FactorNode.");	
+		if(expr == null && value == 0)
+			throw new ParserException("Syntax error. ParserException in FactorNode.");
 	}
 
 	

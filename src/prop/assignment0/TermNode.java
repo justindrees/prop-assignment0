@@ -1,5 +1,7 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class TermNode implements INode {
 
 	//term = factor , [ ( ‘*’ | ‘/’) , term] ;
@@ -9,10 +11,10 @@ public class TermNode implements INode {
 	private FactorNode factor = null;
 	private char sign = ' ';		// sign for * or /
 	
-	TermNode(Tokenizer tn) throws ParserException{
+	TermNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
 		
-		/*char sign = ' ';
-		INode n = factor();
+
+		factor = new FactorNode(tn);
 		if(tn.current().token() == Token.MULT_OP){
 			sign = '*';
 			tn.moveNext();
@@ -21,12 +23,6 @@ public class TermNode implements INode {
 			sign = '/';
 			tn.moveNext();
 		}
-		if(sign == ' ')
-			throw new ParserException("Syntax error. ParserException in term() ");
-		//TermNode n2 = new TermNode(TermNode term,n,sign);
-		//return n2;
-		return null;
-		*/
 		
 		if(factor == null || term == null || sign == ' ')
 			throw new ParserException("Syntax error. ParserException in TermNode.");	
