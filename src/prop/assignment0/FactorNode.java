@@ -13,9 +13,11 @@ public class FactorNode implements INode {
 	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
 		
 		if(tn.current().token() == Token.INT_LIT){
+			value = (int) tn.current().value();
 			tn.moveNext();
 		}else if(tn.current().token() == Token.LEFT_PAREN){
 			tn.moveNext();
+			expr = new ExpressionNode(tn);
 			if(tn.current().token() == Token.RIGHT_PAREN){
 				tn.moveNext();
 			}
@@ -25,7 +27,6 @@ public class FactorNode implements INode {
 			throw new ParserException("Syntax error. ParserException in FactorNode.");
 	}
 
-	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 		// TODO Auto-generated method stub
