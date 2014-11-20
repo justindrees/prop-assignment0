@@ -5,11 +5,11 @@ public class TermNode implements INode {
 	//term = factor , [ ( ‘*’ | ‘/’) , term] ;
 	
 	private Token token;
-	private TermNode term;
-	private FactorNode factor;
-	private char sign;		// sign for * or /
+	private TermNode term = null;
+	private FactorNode factor = null;
+	private char sign = ' ';		// sign for * or /
 	
-	TermNode(TermNode term, FactorNode factor, char sign, Tokenizer tn){
+	TermNode(TermNode term, FactorNode factor, char sign, Tokenizer tn) throws ParserException{
 		this.term = term;
 		this.factor = factor;
 		this.sign = sign;
@@ -30,6 +30,9 @@ public class TermNode implements INode {
 		//return n2;
 		return null;
 		*/
+		
+		if(factor == null || term == null || sign == ' ')
+			throw new ParserException("Syntax error. ParserException in TermNode.");	
 	}
 	
 	

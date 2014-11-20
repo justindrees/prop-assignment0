@@ -3,12 +3,12 @@ package prop.assignment0;
 public class FactorNode implements INode {
 
 	//factor = int | ‘(’ , expr , ‘)’
-	int value;
+	int value = 0;
 	ExpressionNode expr;
 	// no variable for Parentheses, will check if they exist below
 	
 	
-	FactorNode(int value, ExpressionNode expr, Tokenizer tn){
+	FactorNode(int value, ExpressionNode expr, Tokenizer tn) throws ParserException{
 		this.value = value;
 		this.expr = expr;
 		
@@ -27,6 +27,9 @@ public class FactorNode implements INode {
 		return new FactorNode();
 		//throw new ParserException("Syntax error. ParserException in factor() ");*/
 
+		
+		if(expr == null || value == 0)
+			throw new ParserException("Syntax error. ParserException in FactorNode.");	
 	}
 
 	

@@ -1,21 +1,19 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class ExpressionNode implements INode {
 
 	 //expr = term , [ ( ‘+’ | ‘-’ ) , expr ] ;
 
 	private Token token;
-	private TermNode term;
-	private char sign;		// sign for + or -
-	private ExpressionNode expr;
+	private TermNode term = null;
+	private char sign = ' ';		// sign for + or -
+	private ExpressionNode expr = null;
 	
-	ExpressionNode(Tokenizer tn){
+	ExpressionNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
 
-
-		/*
 		tn.moveNext();
-		char sign = ' ';
-		//INode n = term();
 		if(tn.current().token() == Token.ADD_OP){
 			tn.moveNext();
 			sign = '+';
@@ -24,10 +22,9 @@ public class ExpressionNode implements INode {
 			sign = '-';
 			tn.moveNext();
 		}
-		//ExpressionNode n2 = new ExpressionNode(n, ExpressionNode expr,sign);
 
-		//throw new ParserException("Syntax error. ParserException in expr() ");
-		 */
+		if(term == null || expr == null || sign == ' ')
+			throw new ParserException("Syntax error. ParserException in ExpressionNode.");	
 	}
 	
 	
