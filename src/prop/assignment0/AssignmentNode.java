@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class AssignmentNode implements INode {
 
-	//assign = id , ‘=’ , expr , ‘;’
+	//assign = id , '=' , expr , ';'
 	
 	private String id = "";
 	private ExpressionNode expr = null;

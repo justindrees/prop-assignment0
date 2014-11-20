@@ -81,6 +81,7 @@ public class Tokenizer implements ITokenizer {
 					lexemeToCreate = "";
 				}
 			}
+
 		}/*else if (scanner.current() == null) {		// How do you handle null?
 			currentLexeme = new Lexeme(lexemeToCreate,Token.NULL);
 		}*/else if (scanner.current() == '+') {

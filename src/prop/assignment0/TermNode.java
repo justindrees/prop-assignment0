@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class TermNode implements INode {
 
-	//term = factor , [ ( ‘*’ | ‘/’) , term] ;
+	//term = factor , [ ( '*' | '/') , term];
 	
 	private Token token;
 	private TermNode term = null;

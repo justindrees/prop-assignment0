@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class ExpressionNode implements INode {
 
-	 //expr = term , [ ( ‘+’ | ‘-’ ) , expr ] ;
+	 //expr = term , [ ( '+' | '-' ) , expr ] ;
 
 	private Token token;
 	private TermNode term = null;
