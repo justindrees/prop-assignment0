@@ -6,7 +6,6 @@ public class AssignmentNode implements INode {
 
 	//assign = id , ‘=’ , expr , ‘;’
 	
-	private Token token;
 	private String id = "";
 	private ExpressionNode expr = null;
 	private boolean semicolon = false;
@@ -38,10 +37,11 @@ public class AssignmentNode implements INode {
 	}
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		System.out.println("--------------BUILDSTRING---------------");
 		builder.append("AssignmentNode");
-		builder.append("\n\t"+id);
-		builder.append("\n\t=");
+		builder.append("\n\t"+Token.IDENT+" "+id);
+		builder.append("\n\t"+Token.ASSIGN_OP+" =");
 		expr.buildString(builder,tabs+1);
+		builder.append("\n\t"+Token.SEMICOLON+" ;");
+		System.out.println("Parse tree built");
 	}
 }

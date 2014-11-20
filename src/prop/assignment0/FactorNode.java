@@ -7,7 +7,9 @@ public class FactorNode implements INode {
 	//factor = int | ‘(’ , expr , ‘)’
 	int value = 0;
 	ExpressionNode expr = null;
-	// no variable for parentheses, will check if they exist below
+	Token token;
+	boolean leftParen = false;
+	boolean rightParen = false;
 	
 	
 	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
@@ -16,14 +18,16 @@ public class FactorNode implements INode {
 		if (tn.current().token() == Token.INT_LIT){
 			value = Integer.parseInt((String)tn.current().value());
 			System.out.println("value set to "+value+" and moveNext creates following:");
+			token = Token.INT_LIT;
 			tn.moveNext();
 		}else if(tn.current().token() == Token.LEFT_PAREN){
+			leftParen = true;
+			token = Token.LEFT_PAREN;
 			tn.moveNext();
-			System.out.println("STARTING LEFT PAREN EXPR");
 			expr = new ExpressionNode(tn);
-			System.out.println("BACK FROM EXPR");
 			if(tn.current().token() == Token.RIGHT_PAREN){
-				System.out.println("Token = RIGHT PAREN and moveNext creates following:");
+				rightParen = true;
+				token = Token.RIGHT_PAREN;
 				tn.moveNext();
 			}
 		}
@@ -48,7 +52,9 @@ public class FactorNode implements INode {
 		if(expr != null){
 			expr.buildString(builder,tabs+1);
 		}else if(value != 0){
-			builder.append("\n"+std_tab+"\t"+value);
+			builder.append("\n"+std_tab+"\t"+token+" "+value);
+		}else if(leftParen == true){
+			builder.append("\n"+std_tab+"\t"+token+" "+"(");
 		}
 	}
 

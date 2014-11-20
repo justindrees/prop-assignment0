@@ -32,7 +32,7 @@ public class Program {
 				builder = new StringBuilder();
 				builder.append("PARSE TREE:\n");
 				root.buildString(builder, 0);
-				builder.append("\nEVALUATION:\n");
+				builder.append("\n\nEVALUATION:\n");
 				builder.append(root.evaluate(null));
 				
 				stream = new FileOutputStream(outputFileName);

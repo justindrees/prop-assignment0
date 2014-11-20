@@ -20,10 +20,12 @@ public class TermNode implements INode {
 		if(tn.current().token() == Token.MULT_OP){
 			sign = '*';
 			System.out.println("sign in TermNode = * and moveNext creates following:");
+			token = Token.MULT_OP;
 			tn.moveNext();
 		}else if(tn.current().token() == Token.DIV_OP){
 			System.out.println("sign in TermNode = / and moveNext creates following:");
 			sign = '/';
+			token = Token.DIV_OP;
 			tn.moveNext();
 		}
 		if(tn.current().token() == Token.INT_LIT){
@@ -47,8 +49,11 @@ public class TermNode implements INode {
 			std_tab += "\t";
 		}
 		builder.append("\n"+std_tab+"TermNode");
-		factor.buildString(builder,tabs+1);
-		builder.append("\n"+std_tab+"\t"+sign);
-		term.buildString(builder,tabs+1);
+		if(factor != null)
+			factor.buildString(builder,tabs+1);
+		if(sign != ' ')
+			builder.append("\n"+std_tab+"\t"+token+" "+sign);
+		if(term != null)
+			term.buildString(builder,tabs+1);
 	}
 }

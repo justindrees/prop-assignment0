@@ -20,10 +20,12 @@ public class ExpressionNode implements INode {
 		
 		if(tn.current().token() == Token.ADD_OP){
 			sign = '+';
+			token = Token.ADD_OP;
 			System.out.println("Token = ADD_OP and moveNext creates following:");
 			tn.moveNext();
 		}else if(tn.current().token() == Token.SUB_OP){
 			sign = '-';
+			token = Token.SUB_OP;
 			System.out.println("Token = SUB_OP and moveNext creates following:");
 			tn.moveNext();
 		}
@@ -49,8 +51,11 @@ public class ExpressionNode implements INode {
 			std_tab += "\t";
 		}
 		builder.append("\n"+std_tab+"ExpressionNode");
-		term.buildString(builder,tabs+1);
-		builder.append("\n"+std_tab+"\t"+sign);
-		expr.buildString(builder,tabs+1);
+		if(term != null)
+			term.buildString(builder,tabs+1);
+		builder.append("\n"+std_tab+"\t"+token+" "+sign);
+		if(expr != null)
+			expr.buildString(builder,tabs+1);
+
 	}
 }
