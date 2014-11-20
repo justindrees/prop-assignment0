@@ -9,7 +9,7 @@ public class TermNode implements INode {
 	private FactorNode factor;
 	private char sign;		// sign for * or /
 	
-	TermNode(TermNode term, FactorNode factor, char sign){
+	TermNode(TermNode term, FactorNode factor, char sign, Tokenizer tn){
 		this.term = term;
 		this.factor = factor;
 		this.sign = sign;

@@ -9,11 +9,9 @@ public class ExpressionNode implements INode {
 	private char sign;		// sign for + or -
 	private ExpressionNode expr;
 	
-	ExpressionNode(TermNode term, ExpressionNode expr, char sign){
-		this.term = term;
-		this.expr = expr;
-		this.sign = sign;
-		
+	ExpressionNode(Tokenizer tn){
+
+
 		/*
 		tn.moveNext();
 		char sign = ' ';
@@ -27,9 +25,7 @@ public class ExpressionNode implements INode {
 			tn.moveNext();
 		}
 		//ExpressionNode n2 = new ExpressionNode(n, ExpressionNode expr,sign);
-		//INode n2 = expr();
-		//return n2;
-		return null;
+
 		//throw new ParserException("Syntax error. ParserException in expr() ");
 		 */
 	}

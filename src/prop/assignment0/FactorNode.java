@@ -8,7 +8,7 @@ public class FactorNode implements INode {
 	// no variable for Parentheses, will check if they exist below
 	
 	
-	FactorNode(int value, ExpressionNode expr){
+	FactorNode(int value, ExpressionNode expr, Tokenizer tn){
 		this.value = value;
 		this.expr = expr;
 		

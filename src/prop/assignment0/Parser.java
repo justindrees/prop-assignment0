@@ -20,11 +20,15 @@ public class Parser implements IParser {
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {		// use tn.current() and tn.moveNext()	
 		tn.moveNext();
-		return assign();
+		return new AssignmentNode(tn);
+		//return assign();
 	}
-	private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
+	/*private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
 		//assign = id , ‘=’ , expr , ‘;’
-		return null;
+		//ExpressionNode n = new ExpressionNode(id,n);
+		
+		//return new AssignmentNode(null, null);
+		return new AssignmentNode();
 	}
 	private ExpressionNode expr() throws IOException, TokenizerException{
 		//expr = term , [ ( ‘+’ | ‘-’ ) , expr ] ;
@@ -38,6 +42,7 @@ public class Parser implements IParser {
 		//factor = int | ‘(’ , expr , ‘)’
 		return null;
 	}
+	*/
 	// Closes the file and releases any system resources associated with it.
 	@Override
 	public void close() throws IOException {
