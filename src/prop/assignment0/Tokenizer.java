@@ -56,11 +56,7 @@ public class Tokenizer implements ITokenizer {
 				// Find character that is not letters, digits, dollar signs, or underscore characters
 				// Then you know the lexeme ends before this character
 				// Add the whole lexeme to the arraylist tokens
-				try {
-					  Thread.sleep(1000);
-					} catch (InterruptedException ie) {
-					    //Handle exception
-					}
+
 				lexemeToCreate += scanner.current();
 				scanner.moveNext();
 				if(scanner.current() == ' '){
