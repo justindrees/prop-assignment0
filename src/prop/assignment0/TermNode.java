@@ -9,10 +9,7 @@ public class TermNode implements INode {
 	private FactorNode factor = null;
 	private char sign = ' ';		// sign for * or /
 	
-	TermNode(TermNode term, FactorNode factor, char sign, Tokenizer tn) throws ParserException{
-		this.term = term;
-		this.factor = factor;
-		this.sign = sign;
+	TermNode(Tokenizer tn) throws ParserException{
 		
 		/*char sign = ' ';
 		INode n = factor();

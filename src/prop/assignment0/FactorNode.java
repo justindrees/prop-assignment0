@@ -5,12 +5,10 @@ public class FactorNode implements INode {
 	//factor = int | ‘(’ , expr , ‘)’
 	int value = 0;
 	ExpressionNode expr;
-	// no variable for Parentheses, will check if they exist below
+	// no variable for parentheses, will check if they exist below
 	
 	
-	FactorNode(int value, ExpressionNode expr, Tokenizer tn) throws ParserException{
-		this.value = value;
-		this.expr = expr;
+	FactorNode(Tokenizer tn) throws ParserException{
 		
 		/*
 		if(tn.current().token() == Token.INT_LIT){
