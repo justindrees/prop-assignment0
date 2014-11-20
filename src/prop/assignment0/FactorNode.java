@@ -1,42 +1,54 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class FactorNode implements INode {
 
 	//factor = int | '(' , expr , ')'
+	int value = 0;
+	ExpressionNode expr = null;
+	Token token;
+	boolean paren = false;
 	
-	FactorNode(TermNode term, FactorNode fnode, char sign){
-		this.term = term;
-		this.fnode = fnode;
-		this.sign = sign;
-		
-		/*
-		if(tn.current().token() == Token.INT_LIT){
-			parseTree.add(tn.current());
+	
+	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
+		if (tn.current().token() == Token.INT_LIT){
+			value = Integer.parseInt((String)tn.current().value());
 			tn.moveNext();
 		}else if(tn.current().token() == Token.LEFT_PAREN){
-			parseTree.add(tn.current());
+			token = Token.LEFT_PAREN;
 			tn.moveNext();
-			INode n = expr();
+			expr = new ExpressionNode(tn);
 			if(tn.current().token() == Token.RIGHT_PAREN){
-				parseTree.add(tn.current());
+				paren = true;
+				token = Token.RIGHT_PAREN;
 				tn.moveNext();
 			}
-		return new FactorNode();
-		//throw new ParserException("Syntax error. ParserException in factor() ");*/
-
+		}
+		if(expr == null && value == 0){
+			throw new ParserException("Syntax error. ParserException in FactorNode.");
+		}
 	}
 
-	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
-		
+		String std_tab = "";
+		for(int i = 0;i<tabs;i++){
+			std_tab += "\t";
+		}
+		builder.append("\n"+std_tab+"FactorNode");
+		if(expr != null && paren == true){
+			builder.append("\n"+std_tab+"\t"+Token.LEFT_PAREN+" "+"(");
+			expr.buildString(builder,tabs+1);
+			builder.append("\n"+std_tab+"\t"+Token.RIGHT_PAREN+" "+")");
+		}else if(value != 0){
+			builder.append("\n"+std_tab+"\t"+Token.INT_LIT+" "+value);
+		}
 	}
 
 }

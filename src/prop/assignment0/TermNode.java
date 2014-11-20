@@ -1,37 +1,35 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class TermNode implements INode {
 
 	//term = factor , [ ( '*' | '/') , term];
 	
 	private Token token;
-	private TermNode term;
-	private FactorNode fnode;
-	private char sign;
+	private TermNode term = null;
+	private FactorNode factor = null;
+	private char sign = ' ';		// sign for * or /
 	
-	TermNode(TermNode term, FactorNode fnode, char sign){
-		this.term = term;
-		this.fnode = fnode;
-		this.sign = sign;
+	TermNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
+		factor = new FactorNode(tn);
 		
-		/*char sign = ' ';
-		INode n = factor();
 		if(tn.current().token() == Token.MULT_OP){
 			sign = '*';
+			token = Token.MULT_OP;
 			tn.moveNext();
-		}
-		if(tn.current().token() == Token.DIV_OP){
+		}else if(tn.current().token() == Token.DIV_OP){
 			sign = '/';
+			token = Token.DIV_OP;
 			tn.moveNext();
 		}
-		if(sign == ' ')
-			throw new ParserException("Syntax error. ParserException in term() ");
-		//TermNode n2 = new TermNode(TermNode term,n,sign);
-		//return n2;
-		return null;
-		*/
+		if(tn.current().token() == Token.INT_LIT){
+			term = new TermNode(tn);
+		}
+		if(factor == null){
+			throw new ParserException("Syntax error. ParserException in TermNode.");
+		}
 	}
-	
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
@@ -41,8 +39,16 @@ public class TermNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
-		
+		String std_tab = "";
+		for(int i = 0;i<tabs;i++){
+			std_tab += "\t";
+		}
+		builder.append("\n"+std_tab+"TermNode");
+		if(factor != null)
+			factor.buildString(builder,tabs+1);
+		if(sign != ' ')
+			builder.append("\n"+std_tab+"\t"+token+" "+sign);
+		if(term != null)
+			term.buildString(builder,tabs+1);
 	}
-
 }

@@ -8,7 +8,6 @@ public class Parser implements IParser {
 	Tokenizer tn = new Tokenizer();
 	ArrayList<INode> parseTree = new ArrayList<INode>();
 	
-	
 	public Parser() {	
 	}
 	// Opens a file for parsing.
@@ -20,23 +19,7 @@ public class Parser implements IParser {
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {		// use tn.current() and tn.moveNext()	
 		tn.moveNext();
-		return assign();
-	}
-	private AssignmentNode assign() throws IOException, TokenizerException, ParserException{
-
-		return null;
-	}
-	private ExpressionNode expr() throws IOException, TokenizerException{
-
-		return null;
-	}
-	private TermNode term() throws IOException, TokenizerException, ParserException{
-
-		return null;
-	}
-	private FactorNode factor() throws IOException, TokenizerException{
-
-		return null;
+		return new AssignmentNode(tn);
 	}
 	// Closes the file and releases any system resources associated with it.
 	@Override

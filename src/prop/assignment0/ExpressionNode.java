@@ -1,37 +1,35 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class ExpressionNode implements INode {
 
 	 //expr = term , [ ( '+' | '-' ) , expr ] ;
 
 	private Token token;
-	private TermNode term;
-	private ExpressionNode expr;
-	private String sign;
+	private TermNode term = null;
+	private char sign = ' ';		// sign for + or -
+	private ExpressionNode expr = null;
 	
-	ExpressionNode(TermNode term, ExpressionNode expr, String sign){
-		this.term = term;
-		this.expr = expr;
-		this.sign = sign;
+	ExpressionNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
+
+		term = new TermNode(tn);
 		
-		/*
-		tn.moveNext();
-		char sign = ' ';
-		//INode n = term();
 		if(tn.current().token() == Token.ADD_OP){
-			tn.moveNext();
 			sign = '+';
-		}
-		if(tn.current().token() == Token.SUB_OP){
+			token = Token.ADD_OP;
+			tn.moveNext();
+		}else if(tn.current().token() == Token.SUB_OP){
 			sign = '-';
+			token = Token.SUB_OP;
 			tn.moveNext();
 		}
-		//ExpressionNode n2 = new ExpressionNode(n, ExpressionNode expr,sign);
-		//INode n2 = expr();
-		//return n2;
-		return null;
-		//throw new ParserException("Syntax error. ParserException in expr() ");
-		 */
+		if(tn.current().token() != Token.RIGHT_PAREN && tn.current().token() != Token.SEMICOLON){
+			expr = new ExpressionNode(tn);
+		}
+		if(term == null && expr == null && sign == ' '){
+			throw new ParserException("Syntax error. ParserException in ExpressionNode.");	
+		}
 	}
 	
 	
@@ -43,8 +41,17 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
-		
-	}
+		String std_tab = "";
+		for(int i = 0;i<tabs;i++){
+			std_tab += "\t";
+		}
+		builder.append("\n"+std_tab+"ExpressionNode");
+		if(term != null)
+			term.buildString(builder,tabs+1);
+		if (sign != ' ')
+			builder.append("\n"+std_tab+"\t"+token+" "+sign);
+		if(expr != null)
+			expr.buildString(builder,tabs+1);
 
+	}
 }
