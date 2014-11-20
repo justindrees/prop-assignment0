@@ -40,7 +40,16 @@ public class FactorNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		System.out.println("FactorNode buildString(): "+value+" "+"("+expr+")");
+		String std_tab = "";
+		for(int i = tabs;i==0;tabs--){
+			std_tab += "\t";
+		}
+		builder.append("\n"+std_tab+"FactorNode");
+		if(expr != null){
+			expr.buildString(builder,tabs+1);
+		}else if(value != 0){
+			builder.append("\n"+std_tab+"\t"+value);
+		}
 	}
 
 }

@@ -39,6 +39,9 @@ public class AssignmentNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		System.out.println("--------------BUILDSTRING---------------");
-		System.out.println("AssignmentNode buildString(): "+id+" = "+expr+";");
+		builder.append("AssignmentNode");
+		builder.append("\n\t"+id);
+		builder.append("\n\t=");
+		expr.buildString(builder,tabs+1);
 	}
 }

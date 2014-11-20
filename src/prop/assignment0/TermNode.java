@@ -42,7 +42,13 @@ public class TermNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		System.out.println("TermNode buildString(): "+factor+" "+sign+" "+term);
+		String std_tab = "";
+		for(int i = tabs;i==0;tabs--){
+			std_tab += "\t";
+		}
+		builder.append("\n"+std_tab+"TermNode");
+		factor.buildString(builder,tabs+1);
+		builder.append("\n"+std_tab+"\t"+sign);
+		term.buildString(builder,tabs+1);
 	}
-
 }

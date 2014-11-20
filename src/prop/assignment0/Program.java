@@ -38,7 +38,6 @@ public class Program {
 				stream = new FileOutputStream(outputFileName);
 				writer = new OutputStreamWriter(stream);
 				writer.write(builder.toString());
-				System.out.println(builder.toString());
 			}
 			catch (Exception exception) {
 				System.out.println("EXCEPTION: " + exception);
