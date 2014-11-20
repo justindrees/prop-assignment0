@@ -15,15 +15,6 @@ public class Program {
 
 		try {
 			try {
-				/* Uncomment if want grade A or B
-				if (args.length < 2)
-					throw new Exception("Incorrect number of parameters to program.");
-				
-				inputFileName = args[0];
-				outputFileName = args[1];
-				*/
-				
-				// TODO: check if System.getProperty works // seems to work
 				inputFileName = System.getProperty("user.dir") + "/input-output-files/input.txt";
 				outputFileName = System.getProperty("user.dir") + "/input-output-files/output.txt";
 				parser = new Parser();

@@ -29,8 +29,9 @@ public class AssignmentNode implements INode {
 	}
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String str = (String)expr.evaluate(null);
+		
+		return (Object)str;
 	}
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
