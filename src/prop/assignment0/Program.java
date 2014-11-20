@@ -24,7 +24,7 @@ public class Program {
 				*/
 				
 				// TODO: check if System.getProperty works // seems to work
-				inputFileName = System.getProperty("user.dir") + "/input-output-files/program1.txt";
+				inputFileName = System.getProperty("user.dir") + "/input-output-files/input.txt";
 				outputFileName = System.getProperty("user.dir") + "/input-output-files/output.txt";
 				parser = new Parser();
 				parser.open(inputFileName);
@@ -38,6 +38,7 @@ public class Program {
 				stream = new FileOutputStream(outputFileName);
 				writer = new OutputStreamWriter(stream);
 				writer.write(builder.toString());
+				System.out.println(builder.toString());
 			}
 			catch (Exception exception) {
 				System.out.println("EXCEPTION: " + exception);

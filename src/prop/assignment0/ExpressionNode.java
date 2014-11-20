@@ -30,7 +30,6 @@ public class ExpressionNode implements INode {
 		if(tn.current().token() != Token.RIGHT_PAREN && tn.current().token() != Token.SEMICOLON){
 			expr = new ExpressionNode(tn);
 		}
-		
 		if(term == null && expr == null && sign == ' '){
 			throw new ParserException("Syntax error. ParserException in ExpressionNode.");	
 		}

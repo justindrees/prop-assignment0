@@ -30,17 +30,6 @@ public class FactorNode implements INode {
 		if(expr == null && value == 0){
 			throw new ParserException("Syntax error. ParserException in FactorNode.");
 		}
-		
-		/*if(tn.current().token() == Token.INT_LIT){
-		value = Integer.parseInt((String)tn.current().value());
-		tn.moveNext();
-	}else if(tn.current().token() == Token.LEFT_PAREN){
-		tn.moveNext();
-		expr = new ExpressionNode(tn);
-		if(tn.current().token() == Token.RIGHT_PAREN){
-			tn.moveNext();
-		}
-	}*/
 	}
 
 	@Override

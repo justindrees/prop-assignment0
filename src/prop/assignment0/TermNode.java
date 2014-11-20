@@ -29,13 +29,10 @@ public class TermNode implements INode {
 		if(tn.current().token() == Token.INT_LIT){
 			term = new TermNode(tn);
 		}
-		
 		if(factor == null){
 			throw new ParserException("Syntax error. ParserException in TermNode.");
 		}
-		
 	}
-	
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
