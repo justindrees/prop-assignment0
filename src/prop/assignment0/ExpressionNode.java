@@ -32,11 +32,21 @@ public class ExpressionNode implements INode {
 		}
 	}
 	
-	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		double sum = 0;
+		double val1 = (double)term.evaluate(null);
+		if(expr != null){	
+			double val2 = (double)expr.evaluate(null);
+			switch(sign){
+				case '+':
+					sum = val1 + val2;
+				case '-':
+					sum = val1 - val2;
+			}
+			return (Object)sum;
+		}
+		return val1;
 	}
 
 	@Override

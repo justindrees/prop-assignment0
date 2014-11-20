@@ -9,7 +9,6 @@ public class AssignmentNode implements INode {
 	private String id = "";
 	private ExpressionNode expr = null;
 	private boolean semicolon = false;
-	// no variables for = and ;, will check if they exist below
 	
 	AssignmentNode(Tokenizer tn) throws IOException, TokenizerException, ParserException{
 		if(tn.current().token() == Token.IDENT){
@@ -29,8 +28,9 @@ public class AssignmentNode implements INode {
 	}
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		String str = (String)expr.evaluate(null);
-		
+		System.out.println("1");
+		double value = (double)expr.evaluate(null);
+		String str = id+" = "+value; 
 		return (Object)str;
 	}
 	@Override

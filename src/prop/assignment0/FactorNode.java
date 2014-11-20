@@ -32,6 +32,14 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		if(value != 0){
+			System.out.println("FactorNode returned value: "+value);
+			return (double)value;
+		}else if(expr != null){
+			System.out.println("FactorNode contained an ExprNode and returned the value of that Expr");
+			return (double)expr.evaluate(null);
+		}
+		System.out.println("FactorNode returned null as value was 0 and expr was null. Error?");
 		return null;
 	}
 
