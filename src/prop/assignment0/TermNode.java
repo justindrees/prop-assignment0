@@ -40,9 +40,12 @@ public class TermNode implements INode {
 			switch(sign){
 				case '*':
 					sum = val1 * val2;
+					System.out.println(val1+" * "+val2+" = "+sum);
 				case '/':
 					sum = (double)val1 / val2;
+					System.out.println(val1+" / "+val2+" = "+sum);
 			}
+			return sum;
 		}
 		return val1;
 	}

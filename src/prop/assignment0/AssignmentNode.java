@@ -31,6 +31,7 @@ public class AssignmentNode implements INode {
 		System.out.println("1");
 		double value = (double)expr.evaluate(null);
 		String str = id+" = "+value; 
+		System.out.println("Eval returning: "+str);
 		return (Object)str;
 	}
 	@Override
