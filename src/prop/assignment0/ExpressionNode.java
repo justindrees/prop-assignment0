@@ -12,21 +12,28 @@ public class ExpressionNode implements INode {
 	private ExpressionNode expr = null;
 	
 	ExpressionNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		System.out.println("ExpressionNode constructor called");
+		System.out.println("-------------NEW INSTANCE OF EXPRESSIONNODE-----------------");
+		System.out.println("ExpressionNode constructor called, current is: "+tn.current());
+
 		term = new TermNode(tn);
-		tn.moveNext();
-		if(tn.current().token() == Token.ADD_OP){
-			tn.moveNext();
-			sign = '+';
-		}
-		if(tn.current().token() == Token.SUB_OP){
-			sign = '-';
-			tn.moveNext();
-		}
-		expr = new ExpressionNode(tn);
+		System.out.println("BACK TO EXPR FROM TERMNODE");
 		
-		if(term == null || expr == null || sign == ' ')
+		if(tn.current().token() == Token.ADD_OP){
+			sign = '+';
+			System.out.println("Token = ADD_OP and moveNext creates following:");
+			tn.moveNext();
+		}else if(tn.current().token() == Token.SUB_OP){
+			sign = '-';
+			System.out.println("Token = SUB_OP and moveNext creates following:");
+			tn.moveNext();
+		}
+		if(tn.current().token() != Token.RIGHT_PAREN && tn.current().token() != Token.SEMICOLON){
+			expr = new ExpressionNode(tn);
+		}
+		
+		if(term == null && expr == null && sign == ' '){
 			throw new ParserException("Syntax error. ParserException in ExpressionNode.");	
+		}
 	}
 	
 	

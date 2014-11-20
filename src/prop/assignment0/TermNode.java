@@ -12,22 +12,28 @@ public class TermNode implements INode {
 	private char sign = ' ';		// sign for * or /
 	
 	TermNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
-		System.out.println("TermNode constructor called");
-		
+		System.out.println("-------------NEW INSTANCE OF TERMNODE-----------------");
+		System.out.println("TermNode constructor called, current is: "+tn.current());
 		factor = new FactorNode(tn);
+		System.out.println("BACK TO TERMNODE FROM FACTORNODE");
+		
 		if(tn.current().token() == Token.MULT_OP){
 			sign = '*';
+			System.out.println("sign in TermNode = * and moveNext creates following:");
 			tn.moveNext();
-		}
-		if(tn.current().token() == Token.DIV_OP){
+		}else if(tn.current().token() == Token.DIV_OP){
+			System.out.println("sign in TermNode = / and moveNext creates following:");
 			sign = '/';
 			tn.moveNext();
 		}
+		if(tn.current().token() == Token.INT_LIT){
+			term = new TermNode(tn);
+		}
 		
-		term = new TermNode(tn);
+		if(factor == null){
+			throw new ParserException("Syntax error. ParserException in TermNode.");
+		}
 		
-		if(factor == null || term == null || sign == ' ')
-			throw new ParserException("Syntax error. ParserException in TermNode.");	
 	}
 	
 	
