@@ -41,10 +41,10 @@ public class ExpressionNode implements INode {
 			switch(sign){
 				case '+':
 					sum = val1 + val2;
-					System.out.println(val1+" + "+val2+" = "+sum);
+					break;
 				case '-':
 					sum = val1 - val2;
-					System.out.println(val1+" - "+val2+" = "+sum);
+					break;
 			}
 			return (Object)sum;
 		}

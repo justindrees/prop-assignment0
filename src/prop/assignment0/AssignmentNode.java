@@ -28,10 +28,8 @@ public class AssignmentNode implements INode {
 	}
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		System.out.println("1");
 		double value = (double)expr.evaluate(null);
 		String str = id+" = "+value; 
-		System.out.println("Eval returning: "+str);
 		return (Object)str;
 	}
 	@Override
@@ -41,6 +39,5 @@ public class AssignmentNode implements INode {
 		builder.append("\n\t"+Token.ASSIGN_OP+" =");
 		expr.buildString(builder,tabs+1);
 		builder.append("\n\t"+Token.SEMICOLON+" ;");
-		System.out.println("Parse tree built");
 	}
 }
