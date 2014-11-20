@@ -15,7 +15,7 @@ public class Program {
 
 		try {
 			try {
-				inputFileName = System.getProperty("user.dir") + "/input-output-files/input.txt";
+				inputFileName = System.getProperty("user.dir") + "/input-output-files/program1.txt";
 				outputFileName = System.getProperty("user.dir") + "/input-output-files/output.txt";
 				parser = new Parser();
 				parser.open(inputFileName);

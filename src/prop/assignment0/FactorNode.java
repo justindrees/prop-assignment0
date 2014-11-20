@@ -10,7 +10,6 @@ public class FactorNode implements INode {
 	Token token;
 	boolean paren = false;
 	
-	
 	FactorNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
 		if (tn.current().token() == Token.INT_LIT){
 			value = Integer.parseInt((String)tn.current().value());
