@@ -14,7 +14,6 @@ public class ExpressionNode implements INode {
 	ExpressionNode(Tokenizer tn) throws ParserException, IOException, TokenizerException{
 		
 		term = new TermNode(tn);
-		
 		tn.moveNext();
 		if(tn.current().token() == Token.ADD_OP){
 			tn.moveNext();
@@ -24,9 +23,7 @@ public class ExpressionNode implements INode {
 			sign = '-';
 			tn.moveNext();
 		}
-		
 		expr = new ExpressionNode(tn);
-		
 		
 		if(term == null || expr == null || sign == ' ')
 			throw new ParserException("Syntax error. ParserException in ExpressionNode.");	
@@ -41,8 +38,7 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("ExpressionNode buildString(): "+term+" "+sign+" "+expr);
 	}
 
 }

@@ -24,6 +24,8 @@ public class TermNode implements INode {
 			tn.moveNext();
 		}
 		
+		term = new TermNode(tn);
+		
 		if(factor == null || term == null || sign == ' ')
 			throw new ParserException("Syntax error. ParserException in TermNode.");	
 	}
@@ -37,8 +39,7 @@ public class TermNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("TermNode buildString(): "+factor+" "+sign+" "+term);
 	}
 
 }
