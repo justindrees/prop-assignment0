@@ -5,7 +5,9 @@ import java.io.IOException;
 public class FactorNode implements INode {
 
 	//factor = int | '(' , expr , ')'
-	
+	int value = 0;
+	int value1 = 0;
+	int value2 = 0;
 	ExpressionNode expr = null;
 	Token token;
 	boolean paren = false;
