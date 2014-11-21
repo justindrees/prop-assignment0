@@ -114,18 +114,8 @@ public class Tokenizer implements ITokenizer {
 		}else if (scanner.current() == '}') {
 			currentLexeme = new Lexeme('}',Token.RIGHT_CURLY);
 			scanner.moveNext();
-		}/*else if (scanner.current() == Token.EOF) {			// how can EOF be defined?
-			currentLexeme = new Lexeme(lexemeToCreate,Token.EOF);
-		}*/
-		
-		// If scanner.MoveNext() == EOF { this.close() }
-		
-		/*else if (scanner.current()Type == Character.MATH_SYMBOL) { // Code to read in lexeme if it's type ADD_OP, SUB_OP, MULT_OP, DIV_OP
-		}else if (scanner.current()Type == Character.CONNECTOR_PUNCTUATION) {
-		}else if (scanner.current() == '=') { // Code to read in lexeme if it's type ASSING_OP
-		}else if (Character.isSpaceChar(scanner.current()) || Character.isWhitespace(scanner.current())) {
+		}
 
-		}*/
 	}
 
 	// Closes the file and releases any system resources associated with it.

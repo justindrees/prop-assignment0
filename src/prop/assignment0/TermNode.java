@@ -33,8 +33,21 @@ public class TermNode implements INode {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		double sum = 0;
+		double val1 = (double)factor.evaluate(null);
+		if(term != null){
+			double val2 = (double)term.evaluate(null);
+			switch(sign){
+				case '*':
+					sum = val1 * val2;
+					break;
+				case '/':
+					sum = (double)val1 / val2;
+					break;
+			}
+			return sum;
+		}
+		return val1;
 	}
 
 	@Override

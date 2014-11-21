@@ -4,12 +4,11 @@ import java.io.IOException;
 
 public class AssignmentNode implements INode {
 
-	//assign = id , '=' , expr , ';'
+	//assign = id , '=' , expr ,  ';'
 	
 	private String id = "";
 	private ExpressionNode expr = null;
 	private boolean semicolon = false;
-	// no variables for = and ;, will check if they exist below
 	
 	AssignmentNode(Tokenizer tn) throws IOException, TokenizerException, ParserException{
 		if(tn.current().token() == Token.IDENT){
@@ -29,8 +28,8 @@ public class AssignmentNode implements INode {
 	}
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		String str = (String)expr.evaluate(null);
-		
+		double value = (double)expr.evaluate(null);
+		String str = id+" = "+value; 
 		return (Object)str;
 	}
 	@Override
@@ -40,6 +39,5 @@ public class AssignmentNode implements INode {
 		builder.append("\n\t"+Token.ASSIGN_OP+" =");
 		expr.buildString(builder,tabs+1);
 		builder.append("\n\t"+Token.SEMICOLON+" ;");
-		System.out.println("Parse tree built");
 	}
 }
