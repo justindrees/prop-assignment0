@@ -28,7 +28,7 @@ public class AssignmentNode implements INode {
 	}
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		double value = (double)expr.evaluate(null);
+		double value = (Double)expr.evaluate(null);
 		String str = id+" = "+value; 
 		return (Object)str;
 	}

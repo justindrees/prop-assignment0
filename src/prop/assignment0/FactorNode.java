@@ -34,7 +34,7 @@ public class FactorNode implements INode {
 		if(value != 0){
 			return (double)value;
 		}else if(expr != null){
-			return (double)expr.evaluate(null);
+			return (Double)expr.evaluate(null);
 		}
 		return null;
 	}

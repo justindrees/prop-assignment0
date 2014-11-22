@@ -34,9 +34,9 @@ public class TermNode implements INode {
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 		double sum = 0;
-		double val1 = (double)factor.evaluate(null);
+		double val1 = (Double)factor.evaluate(null);
 		if(term != null){
-			double val2 = (double)term.evaluate(null);
+			double val2 = (Double)term.evaluate(null);
 			switch(sign){
 				case '*':
 					sum = val1 * val2;

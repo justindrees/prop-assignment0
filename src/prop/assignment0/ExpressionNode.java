@@ -35,9 +35,9 @@ public class ExpressionNode implements INode {
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 		double sum = 0;
-		double val1 = (double)term.evaluate(null);
+		double val1 = (Double)term.evaluate(null);
 		if(expr != null){	
-			double val2 = (double)expr.evaluate(null);
+			double val2 = (Double)expr.evaluate(null);
 			switch(sign){
 				case '+':
 					sum = val1 + val2;
